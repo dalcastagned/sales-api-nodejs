@@ -23,7 +23,7 @@ export default class UsersController {
 
     const user = await showUser.execute({ user_id: id });
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {

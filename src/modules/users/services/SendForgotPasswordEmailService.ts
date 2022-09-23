@@ -46,6 +46,8 @@ class SendForgotPasswordEmailService {
         },
       },
     });
+
+    console.log('aqui');
   }
 }
 

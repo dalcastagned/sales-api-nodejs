@@ -1,9 +1,11 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
-import DiskStorageProvider from '@shared/providers/StorageProvider/DiskStorageProvider';
 import { IUpdateUserAvatar } from '../domain/models/IUpdateUserAvatar';
 import { IUser } from '../domain/models/IUser';
 import { IUsersRepository } from '../domain/repositories/IUsersRepository';
+import path from 'path';
+import uploadConfig from '@config/upload';
+import fs from 'fs';
 
 @injectable()
 class UpdateUserAvatarService {
@@ -16,18 +18,26 @@ class UpdateUserAvatarService {
     user_id,
     avatarFilename,
   }: IUpdateUserAvatar): Promise<IUser> {
+    if (!avatarFilename) {
+      throw new AppError('Avatar is required');
+    }
+
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
       throw new AppError('User not found.');
     }
 
-    const diskProvider = new DiskStorageProvider();
     if (user.avatar) {
-      await diskProvider.deleteFile(user.avatar);
+      const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar);
+      const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath);
+
+      if (userAvatarFileExists) {
+        await fs.promises.unlink(userAvatarFilePath);
+      }
     }
-    const filename = await diskProvider.saveFile(avatarFilename);
-    user.avatar = filename;
+
+    user.avatar = avatarFilename;
 
     await this.usersRepository.save(user);
 

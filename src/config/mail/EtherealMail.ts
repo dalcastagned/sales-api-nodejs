@@ -41,6 +41,9 @@ export default class EtherealMail {
         user: account.user,
         pass: account.pass,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
 
     const message = await transporter.sendMail({
