@@ -34,6 +34,8 @@ class OrdersRepository implements IOrdersRepository {
   }: SearchParams): Promise<IOrderPaginate> {
     const [orders, count] = await this.ormRepository
       .createQueryBuilder()
+      .leftJoinAndSelect('Order.customer', 'customer')
+      .leftJoinAndSelect('Order.order_products', 'order_products')
       .skip(skip)
       .take(take)
       .getManyAndCount();

@@ -1,5 +1,5 @@
 export interface ICreateOrderProducts {
-  product_id: string;
+  id: string;
   price: number;
   quantity: number;
 }
