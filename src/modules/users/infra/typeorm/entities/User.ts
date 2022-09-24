@@ -38,7 +38,9 @@ class User implements IUser {
       return null;
     }
 
-    return `${process.env.BASE_AVATAR_URL}/${this.avatar}`;
+    return `${process.env.BASE_AVATAR_URL || 'http://localhost:3333/files'}/${
+      this.avatar
+    }`;
   }
 }
 

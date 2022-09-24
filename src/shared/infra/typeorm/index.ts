@@ -20,11 +20,11 @@ import { AddOrderFieldtoOrders1619889809717 } from './migrations/1619889809717-A
 
 export const dataSource = new DataSource({
   type: 'postgres',
-  host: 'localhost',
+  host: 'db',
   port: 5432,
   username: 'postgres',
-  password: 'root',
-  database: 'salesapp',
+  password: 'docker',
+  database: 'salesapi',
   entities: [User, UserToken, Customer, Order, OrdersProducts, Product],
   migrations: [
     CreateProducts1607437608841,
