@@ -1,5 +1,4 @@
 import { inject, injectable } from 'tsyringe';
-import redisCache from '@shared/cache/RedisCache';
 import AppError from '@shared/errors/AppError';
 import { IDeleteProduct } from '../domain/models/IDeleteProduct';
 import { IProductsRepository } from '../domain/repositories/IProductsRepository';
@@ -17,8 +16,6 @@ class DeleteProductService {
     if (!product) {
       throw new AppError('Product not found.', 404);
     }
-
-    await redisCache.invalidate('sales-api-PRODUCT_LIST');
 
     await this.productsRepository.remove(product);
   }

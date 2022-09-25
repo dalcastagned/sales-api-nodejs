@@ -25,6 +25,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Express](https://expressjs.com/pt-br/)
 - [PostreSQL](https://www.postgresql.org/)
 - [Redis](https://redis.io/)
+- [Swagger](https://swagger.io/)
 - [TypeORM](https://typeorm.io/)
 - [Docker](https://www.docker.com/)
 - [Handlebars](https://handlebarsjs.com/)
