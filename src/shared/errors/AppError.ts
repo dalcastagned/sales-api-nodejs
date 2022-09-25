@@ -1,3 +1,16 @@
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     AppError:
+ *       type: object
+ *       properties:
+ *         status:
+ *          type: string
+ *         message:
+ *          type: string
+ */
+
 class AppError {
   public readonly message: string;
   public readonly statusCode: number;

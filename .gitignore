@@ -8,6 +8,8 @@ temp/
 coverage
 ormconfig.json
 dist
+package-lock.json
+yarn.lock
 
 uploads/*
 !uploads/.gitkeep
